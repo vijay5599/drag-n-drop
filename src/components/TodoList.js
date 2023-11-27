@@ -1,11 +1,12 @@
-import React from 'react';
-import { Droppable } from 'react-beautiful-dnd';
-import SingleTodo from './SingleTodo';
+import React from "react";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+
+import SingleTodo from "./SingleTodo";
 
 const TodoList = ({ todos, setTodos, completedTodos, setCompletedTodos }) => {
   return (
     <div className="container">
-      <Droppable droppableId="TodosList">
+      <Droppable droppableId="activeTodos">
         {(provided) => (
           <div
             className="todos"
@@ -26,7 +27,7 @@ const TodoList = ({ todos, setTodos, completedTodos, setCompletedTodos }) => {
           </div>
         )}
       </Droppable>
-      <Droppable droppableId="TodosRemove">
+      <Droppable droppableId="completedTodos">
         {(provided) => (
           <div
             className="todos remove"
@@ -43,9 +44,9 @@ const TodoList = ({ todos, setTodos, completedTodos, setCompletedTodos }) => {
                 setTodos={setCompletedTodos}
               />
             ))}
+            {provided.placeholder}
           </div>
         )}
-        {provided.placeholder}
       </Droppable>
     </div>
   );

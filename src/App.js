@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import './style.css';
-import InputFeild from './components/InputFeild';
-import TodoList from './components/TodoList';
-import { DragDropContext } from 'react-beautiful-dnd';
-// import { Todo } from "./models/models";
+import React, { useCallback, useState } from "react";
+import "./style.css";
+import InputFeild from "./components/InputFeild";
+import TodoList from "./components/TodoList";
+import { DragDropContext } from "react-beautiful-dnd";
 
 const App = () => {
-  const [todo, setTodo] = useState('');
+  const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
   const [completedTodos, setCompletedTodos] = useState([]);
 
@@ -15,12 +14,13 @@ const App = () => {
 
     if (todo) {
       setTodos([...todos, { id: Date.now(), todo, isDone: false }]);
-      setTodo('');
+      setTodo("");
     }
   };
 
+  const handleDrag = useCallback(() => {}, []);
   return (
-    <DragDropContext>
+    <DragDropContext onDragEnd={() => {}}>
       <div className="App">
         <span className="heading">Taskify</span>
         <InputFeild todo={todo} setTodo={setTodo} handleAdd={handleAdd} />

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Draggable } from 'react-beautiful-dnd';
-import { useRef } from 'react';
-import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
-import { MdDone } from 'react-icons/md';
+import React, { useEffect, useState } from "react";
+import { Draggable } from "react-beautiful-dnd";
+import { useRef } from "react";
+import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { MdDone } from "react-icons/md";
 
 const SingleTodo = ({ index, todo, todos, setTodos }) => {
   const [edit, setEdit] = useState(false);
@@ -34,14 +34,14 @@ const SingleTodo = ({ index, todo, todos, setTodos }) => {
   };
 
   return (
-    <Draggable draggableId={todo.id.toString()} index={index}>
+    <Draggable draggableId={todo.id} index={index}>
       {(provided) => (
         <form
           className="todos__single"
           onSubmit={(e) => handleEdit(e, todo.id)}
+          ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          ref={provided.innerRef}
         >
           {edit ? (
             <input
